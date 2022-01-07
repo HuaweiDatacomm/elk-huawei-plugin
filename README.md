@@ -20,7 +20,7 @@ the huawei plugin for elk to collect and process information from huawei devices
    rm -rf elk
    mkdir elk
    ```
-2. download elkfiles,then put these in dir /usr/elk: 
+2. download elkfiles,then put these in dir /usr/elk:   
 elasticsearch: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.0.tar.gz  
 logstash: https://artifacts.elastic.co/downloads/logstash/logstash-5.5.0.tar.gz  
 kibana: https://artifacts.elastic.co/downloads/kibana/kibana-5.5.0-linux-x86_64.tar.gz  
@@ -71,10 +71,10 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
    elasticsearch.url: "http://127.0.0.1:9200"
    ```
 10. download grpcio and protobuf
-   ```
-   pip3 install grpcio
-   pip3 install protobuf
-   ```
+    ```
+    pip3 install grpcio
+    pip3 install protobuf
+    ```
 
 ## Getting Used
   
