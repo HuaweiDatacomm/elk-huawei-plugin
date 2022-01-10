@@ -1,0 +1,25 @@
+{
+  "routers": [
+    {
+      "aaa": {
+        "username": "dublin123",
+        "password": "Dublin@123"
+      },
+      "address": "10.137.104.29:57401",
+      "sample_interval": 1000,
+      "request_id": 3,
+      "Paths": [
+        {
+          "path": "huawei-debug:debug/cpu-infos/cpu-info",
+          "depth": 1
+        },
+        {
+          "path": "huawei-ifm:ifm/interfaces/interface",
+          "depth": 1
+        }
+      ]
+    }
+
+  ],
+  "socket_address": "/opt/elk/logstash-5.5.0/huawei-test/UNIX.d"
+}
