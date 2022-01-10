@@ -47,13 +47,16 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
    ```
 6. install elk-huawei-plugin(warning: run install.sh only once):
    ```
-   cd /elk-huawwi-plugin
+   cd /elk-huawei-plugin
    chmod +x install.sh
    ./install.sh
    ```
-7. get protos and transfer protos
+7. put protos in dir elk-huawei-plugin and transfer protos,then generate the file of proto, put these in dir /usr/elk/logstash-5.5.0/huawei-test/protos
    ```
-   
+   cd /elk-huawei-plugin
+   java -Dfile.encoding=utf-8 -jar proto3to2.jar *.proto
+   ruby-protoc *.proto
+   cp -f *.proto *.pb.rb /usr/elk/logstash-5.5.0/huawei-test/protos/
    ```
 8. add elasticsearch's configuration(warning:pay attention to the spaces):
    ```
@@ -61,6 +64,7 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
    vim elasticsearch.yml
    network.host: 127.0.0.1
    http.port: 9200
+   bootstrap.system_call_filter: false
    ```
 9. add kibana's configuration(warning: pay attention to the spaces):
    ```
