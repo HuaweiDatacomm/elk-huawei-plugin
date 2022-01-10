@@ -1,9 +1,9 @@
 #!/bin/bash
 
 elkhuaweiplugin_dir=$(pwd)
-cp -r $elkhuaweiplugin_dir/huawei-test /usr/elk/logstsah-5.5.0/
-cp -r $elkhuaweiplugin_dir/local-plugins /usr/elk/logstsah-5.5.0/
-cp -r $elkhuaweiplugin_dir/logs /usr/elk/logstsah-5.5.0/bin/
+cp -r $elkhuaweiplugin_dir/huawei-test /usr/elk/logstash-5.5.0/
+cp -r $elkhuaweiplugin_dir/local-plugins /usr/elk/logstash-5.5.0/
+cp -r $elkhuaweiplugin_dir/logs /usr/elk/logstash-5.5.0/bin/
 cp -r $elkhuaweiplugin_dir/HuaweiDialGrpc /usr/elk/
 
 cat >> /usr/elk/logstash-5.5.0/Gemfile << EOF
