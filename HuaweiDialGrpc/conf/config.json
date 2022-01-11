@@ -1,0 +1,25 @@
+{
+  "routers": [
+    {
+      "aaa": {
+        "username": "",
+        "password": ""
+      },
+      "address": "",
+      "sample_interval": 1000,
+      "request_id": 3,
+      "Paths": [
+        {
+          "path": "huawei-debug:debug/cpu-infos/cpu-info",
+          "depth": 1
+        },
+        {
+          "path": "huawei-ifm:ifm/interfaces/interface",
+          "depth": 1
+        }
+      ]
+    }
+
+  ],
+  "socket_address": "/usr/elk/logstash-5.5.0/huawei-test/UNIX.d"
+}
