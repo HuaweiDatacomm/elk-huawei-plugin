@@ -5,7 +5,7 @@
         "username": "",
         "password": ""
       },
-      "address": "10.137.104.29:57401",
+      "address": "",
       "sample_interval": 1000,
       "request_id": 3,
       "Paths": [

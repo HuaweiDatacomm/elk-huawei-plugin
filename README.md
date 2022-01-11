@@ -7,7 +7,7 @@ the huawei plugin for elk to collect and process information from huawei devices
 ### **Prerequisites**
 
 - OS : Ubuntu, CentOS, Suse, Red Hat
-- Java : 1.8
+- Java : 1.8 (warning: do not install in dir root)
 - Python : 3.6
 - Ruby :2.7
 
@@ -23,42 +23,48 @@ the huawei plugin for elk to collect and process information from huawei devices
 2. download elkfiles,then put these in dir /usr/elk:   
 elasticsearch: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.0.tar.gz  
 logstash: https://artifacts.elastic.co/downloads/logstash/logstash-5.5.0.tar.gz  
-kibana: https://artifacts.elastic.co/downloads/kibana/kibana-5.5.0-linux-x86_64.tar.gz  
+kibana: https://artifacts.elastic.co/downloads/kibana/kibana-5.5.0-linux-x86_64.tar.gz
+Platform-0.4.2.gem: https://rubygems.org/downloads/Platform-0.4.2.gem
+protoc-2.6.1.gem: https://rubygems.org/downloads/protoc-2.6.1.gem
 ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-buffers-1.6.1.gem
 
-3. extract elk:
+
+4. extract elk:
    ```
    cd /usr/elk
    tar -zxvf elasticsearch-5.5.0.tar.gz
    tar -zxvf logstash-5.5.0.tar.gz
    tar -zxvf kibana-5.5.0-linux-x86_64.tar.gz
    ```
-4. install ruby-protocol-buffers-1.6.1.gem:
+5. install gems:
    ```
    cd /usr/elk
    vim /etc/profile
    export GEM_HOME=/usr/elk/logstash-5.5.0/vendor/bundle/jruby/1.9
    source /etc/profile
+   gem install Platform-0.4.2.gem
+   gem install protoc-2.6.1.gem
    gem install ruby-protocol-buffers-1.6.1.gem
+   ruby-protoc -v
    ```
-5. clone elk-huawei-plugin:
+6. clone elk-huawei-plugin:
    ```
    git clone https://github.com/HuaweiDatacomm/elk-huawei-plugin.git
    ```
-6. install elk-huawei-plugin(warning: run install.sh only once):
+7. install elk-huawei-plugin(warning: run install.sh only once):
    ```
    cd /elk-huawei-plugin
    chmod +x install.sh
    ./install.sh
    ```
-7. put protos in dir elk-huawei-plugin and transfer protos,then generate the file of proto, put these in dir /usr/elk/logstash-5.5.0/huawei-test/protos
+8. put protos in dir elk-huawei-plugin and transfer protos,then generate the file of proto, put these in dir /usr/elk/logstash-5.5.0/huawei-test/protos
    ```
    cd /elk-huawei-plugin
    java -Dfile.encoding=utf-8 -jar proto3to2.jar *.proto
    ruby-protoc *.proto
    cp -f *.proto *.pb.rb /usr/elk/logstash-5.5.0/huawei-test/protos/
    ```
-8. add elasticsearch's configuration(warning:pay attention to the spaces):
+9. add elasticsearch's configuration(warning:pay attention to the spaces):
    ```
    cd /usr/elk/elasticsearch-5.5.0/config
    vim elasticsearch.yml
@@ -66,15 +72,15 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
    http.port: 9200
    bootstrap.system_call_filter: false
    ```
-9. add kibana's configuration(warning: pay attention to the spaces):
-   ```
-   cd /usr/elk/kibana-5.5.0-linux-x86_64/config
-   vim kibana.yml
-   server.port: "5601"
-   server.host: "127.0.0.1"
-   elasticsearch.url: "http://127.0.0.1:9200"
-   ```
-10. download grpcio and protobuf
+10. add kibana's configuration(warning: pay attention to the spaces):
+    ```
+    cd /usr/elk/kibana-5.5.0-linux-x86_64/config
+    vim kibana.yml
+    server.port: "5601"
+    server.host: "127.0.0.1"
+    elasticsearch.url: "http://127.0.0.1:9200"
+    ```
+11. download grpcio and protobuf
     ```
     pip3 install grpcio
     pip3 install protobuf
