@@ -23,9 +23,9 @@ the huawei plugin for elk to collect and process information from huawei devices
 2. download elkfiles,then put these in dir /usr/elk:   
 elasticsearch: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.0.tar.gz  
 logstash: https://artifacts.elastic.co/downloads/logstash/logstash-5.5.0.tar.gz  
-kibana: https://artifacts.elastic.co/downloads/kibana/kibana-5.5.0-linux-x86_64.tar.gz
-Platform-0.4.2.gem: https://rubygems.org/downloads/Platform-0.4.2.gem
-protoc-2.6.1.gem: https://rubygems.org/downloads/protoc-2.6.1.gem
+kibana: https://artifacts.elastic.co/downloads/kibana/kibana-5.5.0-linux-x86_64.tar.gz  
+Platform-0.4.2.gem: https://rubygems.org/downloads/Platform-0.4.2.gem  
+protoc-2.6.1.gem: https://rubygems.org/downloads/protoc-2.6.1.gem  
 ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-buffers-1.6.1.gem
 
 
@@ -138,7 +138,7 @@ Elasticsearch to retrieve data.
    cd /usr/elk/HuaweiDialGrpc
    python3 huawei-dialin-subcribe.py 
    ```
-6. use elasticsearch and kibana
+6. use kibana
  - Open the browser and enter the following URL
    http://127.0.0.1:5601
  - Management => Index Patterns
