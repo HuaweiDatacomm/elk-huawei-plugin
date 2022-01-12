@@ -93,8 +93,7 @@ The ELK tool is an open-source O&M tool and can be installed on multiple platfor
 Details about Elasticsearch, Logstash, and Kibana are as follows:  
  - Elasticsearch is developed based on Java. It is a real-time full-text search and analytics engine and provides three functions: collection, analysis, and storage of data.  
  - Logstash is developed based on Ruby and is a tool for collecting, analyzing, and filtering data. It works based on plug-ins and does not have the capability to receive or 
-convert telemetry data. Modules running on Logstash provide the capability to receive or convert telemetry data, whereas Logstash provides a framework only. The framework 
-consists of the following:
+convert telemetry data. Modules running on Logstash provide the capability to receive or convert telemetry data.
  - Kibana is a web-based graphical user interface (GUI) developed for search purposes. It can analyze and visualize data stored on Elasticsearch. It uses the REST interface of
 Elasticsearch to retrieve data.  
 
@@ -142,7 +141,7 @@ Elasticsearch to retrieve data.
  - Open the browser and enter the following URL
    http://127.0.0.1:5601
  - Management => Index Patterns
- - Index name or pattern : logstash-telemetry-* 
+ - Index name or pattern : logstash_* 
  - Time Filter field name : @timestamp
  - Create
  - Discover
