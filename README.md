@@ -40,7 +40,8 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
    ```
    cd /usr/elk
    vim /etc/profile
-   export GEM_HOME=/usr/elk/logstash-5.5.0/vendor/bundle/jruby/1.9
+   export GEM_HOME=/usr/elk/logstash-5.5.0/vendor/bundle/jruby/1.9/bin
+   export PATH=$GEM_HOME:$PATH
    source /etc/profile
    gem install Platform-0.4.2.gem
    gem install protoc-2.6.1.gem
