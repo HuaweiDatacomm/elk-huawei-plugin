@@ -27,6 +27,7 @@ kibana: https://artifacts.elastic.co/downloads/kibana/kibana-5.5.0-linux-x86_64.
 Platform-0.4.2.gem: https://rubygems.org/downloads/Platform-0.4.2.gem  
 protoc-2.6.1.gem: https://rubygems.org/downloads/protoc-2.6.1.gem  
 ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-buffers-1.6.1.gem
+google-protobuf-3.5.0.pre-java.gem: https://rubygems.org/downloads/google-protobuf-3.5.0.pre-java.gem
 
 
 4. extract elk:
@@ -40,12 +41,14 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
    ```
    cd /usr/elk
    vim /etc/profile
-   export GEM_HOME=/usr/elk/logstash-5.5.0/vendor/bundle/jruby/1.9/bin
+   export GEM_HOME=/usr/elk/logstash-5.5.0/vendor/bundle/jruby/1.9/
    export PATH=$GEM_HOME:$PATH
    source /etc/profile
    gem install Platform-0.4.2.gem
    gem install protoc-2.6.1.gem
    gem install ruby-protocol-buffers-1.6.1.gem
+   mv google-protobuf-3.5.0.pre-java.gem google-protobuf-3.5.0.pre.gem
+   gem install google-protobuf-3.5.0.pre.gem
    ruby-protoc -v
    ```
 6. clone elk-huawei-plugin:
