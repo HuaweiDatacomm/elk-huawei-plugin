@@ -139,7 +139,8 @@ Elasticsearch to retrieve data.
 5. start HuaweiDialGrpc:
    ```
    cd /usr/elk/HuaweiDialGrpc
-   python3 huawei-dialin-subcribe.py 
+   python3 huawei-dialin-subcribe.py
+   python3 huawei_dialout_server.py ip:port
    ```
 6. use kibana
  - Open the browser and enter the following URL
