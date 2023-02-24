@@ -1,12 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-"""
-功能：生产数据类，该类主要用于从路由器采集数据，包括dialin(Subscribe)和dialout(DataPublish)
-版权信息：华为技术有限公司，版本所有(C) 2020-2022
-修改记录：2020-11-12 w30000618 创建
-2020-11-17 w30000618 修改
-"""
 import threading
 import time
 from concurrent import futures
@@ -87,8 +80,9 @@ class Subscribe(threading.Thread):
         try:
             metadata, subreq = Subscribe.generate_subArgs_and_metadata(self.sub_args_dict)
             # 新建grpc客户端，建立grpc连接
+            channel_arguments = (("grpc.keepalive_time_ms", 60000), ("grpc.keepalive_permit_without_calls", True),("grpc.http2.max_ping_strikes", 0))
             server = self.dialin_server
-            channel = grpc.insecure_channel(server)
+            channel = grpc.insecure_channel(server, channel_arguments)
             stub = huawei_grpc_dialin_pb2_grpc.gRPCConfigOperStub(channel)
             # 开始订阅
             sub_resps = stub.Subscribe(subreq, metadata=metadata)
