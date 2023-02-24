@@ -3,33 +3,32 @@
 import signal
 import sys
 import time
+
 import os
-import parse_config
-from consumer_thread import RecordToLog, SendToSock
-from global_args import GlobalArgs
-from huawei_dialin_cancel import create_client_cancel
-from producer_thread import Subscribe
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "proto_py")))
+from consumer_thread import RecordToLog, SendToSock
+from global_args import GlobalArgs
+from producer_thread import DataPublish
 
 # 处理信号程序
 def handle(signum,frame):
     print("Stopping...")
-    print("Now start to cancel subscribe in this python process...")
-    for ids in ids_set:
-        if ids.type == "record_id":
-            create_client_cancel(ids.dialin_server, ids.subscription_id, ids.request_id)
+    print("Now start to cancel huawei dialout in this python process...")
     sys.exit(1)
 
 # 主方法入口
 if __name__ == '__main__':
+
+    if len(sys.argv) <= 1:
+        print("!!!input eror!!!")
+        print("%s ip:port" % sys.argv[0])
+        sys.exit(1)
+
+
     # 监听CTRL C 和 kill -9指令
     signal.signal(signal.SIGINT, handle)
     signal.signal(signal.SIGTERM, handle)
-
-    # 读取配置
-    config_dict = parse_config.get_json_dict()
-    dialin_servers = config_dict.keys()
 
     # 初始化 log_queue, data_queue
     log_set = set()
@@ -52,15 +51,10 @@ if __name__ == '__main__':
         time.sleep(GlobalArgs.CONNECT_WAIT_TIME)  # 暂停2s，等待消费者线程准备就绪
 
         # 创建生产者线程，并开启
-        for dialin_server in dialin_servers:
-            sub_dict = config_dict.get(dialin_server)
-            thread_name = "[" + dialin_server + "'s subscribe]"
-            subscribe_thread = Subscribe(thread_name, log_set, data_queue, dialin_server, sub_dict)
-            subscribe_thread.setDaemon(True)
-            subscribe_thread.start()
-
-        # 保持main（主线程）不停止
-        time.sleep(GlobalArgs._ONE_DAY_IN_SECONDS)
+        thread_name = "[dialout] DataPublish "
+        datapublish_thread = DataPublish(thread_name,data_queue,sys.argv[1] )
+        datapublish_thread.setDaemon(False)
+        datapublish_thread.start()
     except Exception as e:
         print(e)
 
