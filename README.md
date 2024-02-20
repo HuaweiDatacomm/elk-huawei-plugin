@@ -26,8 +26,8 @@ logstash: https://artifacts.elastic.co/downloads/logstash/logstash-5.5.0.tar.gz
 kibana: https://artifacts.elastic.co/downloads/kibana/kibana-5.5.0-linux-x86_64.tar.gz  
 Platform-0.4.2.gem: https://rubygems.org/downloads/Platform-0.4.2.gem  
 protoc-2.6.1.gem: https://rubygems.org/downloads/protoc-2.6.1.gem  
-ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-buffers-1.6.1.gem
-google-protobuf-3.5.0.pre-java.gem: https://rubygems.org/downloads/google-protobuf-3.5.0.pre-java.gem
+ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-buffers-1.6.1.gem  
+
 
 
 4. extract elk:
@@ -47,8 +47,6 @@ google-protobuf-3.5.0.pre-java.gem: https://rubygems.org/downloads/google-protob
    gem install Platform-0.4.2.gem
    gem install protoc-2.6.1.gem
    gem install ruby-protocol-buffers-1.6.1.gem
-   mv google-protobuf-3.5.0.pre-java.gem google-protobuf-3.5.0.pre.gem
-   gem install google-protobuf-3.5.0.pre.gem
    ruby-protoc -v
    ```
 6. clone elk-huawei-plugin:
@@ -62,13 +60,14 @@ google-protobuf-3.5.0.pre-java.gem: https://rubygems.org/downloads/google-protob
    ./install.sh
    ```
 8. put protos in dir elk-huawei-plugin and transfer protos,then generate the file of proto, put these in dir /usr/elk/logstash-5.5.0/huawei-test/protos
+   proto files: https://github.com/HuaweiDatacomm/proto
    ```
    cd /elk-huawei-plugin
    java -Dfile.encoding=utf-8 -jar proto3to2.jar *.proto
    ruby-protoc *.proto
    cp -f *.proto *.pb.rb /usr/elk/logstash-5.5.0/huawei-test/protos/
    ```
-9. add elasticsearch's configuration(warning:pay attention to the spaces):
+10. add elasticsearch's configuration(warning:pay attention to the spaces):
    ```
    cd /usr/elk/elasticsearch-5.5.0/config
    vim elasticsearch.yml
@@ -76,7 +75,7 @@ google-protobuf-3.5.0.pre-java.gem: https://rubygems.org/downloads/google-protob
    http.port: 9200
    bootstrap.system_call_filter: false
    ```
-10. add kibana's configuration(warning: pay attention to the spaces):
+11. add kibana's configuration(warning: pay attention to the spaces):
     ```
     cd /usr/elk/kibana-5.5.0-linux-x86_64/config
     vim kibana.yml
@@ -84,7 +83,7 @@ google-protobuf-3.5.0.pre-java.gem: https://rubygems.org/downloads/google-protob
     server.host: "127.0.0.1"
     elasticsearch.url: "http://127.0.0.1:9200"
     ```
-11. download grpcio and protobuf
+12. download grpcio and protobuf
     ```
     pip3 install grpcio
     pip3 install protobuf
