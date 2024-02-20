@@ -59,7 +59,7 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
    chmod +x install.sh
    ./install.sh
    ```
-8. put protos in dir elk-huawei-plugin and transfer protos,then generate the file of proto, put these in dir /usr/elk/logstash-5.5.0/huawei-test/protos
+8. put protos in dir elk-huawei-plugin and transfer protos,then generate the file of proto, put these in dir /usr/elk/logstash-5.5.0/huawei-test/protos  
    proto files: https://github.com/HuaweiDatacomm/proto
    ```
    cd /elk-huawei-plugin
