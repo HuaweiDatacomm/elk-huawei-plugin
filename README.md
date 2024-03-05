@@ -45,6 +45,7 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
    gem install Platform-0.4.2.gem
    gem install protoc-2.6.1.gem
    gem install ruby-protocol-buffers-1.6.1.gem
+   cp /usr/elk/logstash-5.5.0/vendor/bundle/jruby/1.9/bin/ruby-protoc /usr/bin
    ruby-protoc -v
    ```
 5. clone elk-huawei-plugin:
