@@ -70,7 +70,7 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
 10. add elasticsearch's configuration(warning:pay attention to the spaces):
    ```
    cd /usr/elk/elasticsearch-5.5.0/config
-   vim elasticsearch.yml
+   vi elasticsearch.yml
    network.host: 127.0.0.1
    http.port: 9200
    bootstrap.system_call_filter: false
@@ -78,7 +78,7 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
 11. add kibana's configuration(warning: pay attention to the spaces):
     ```
     cd /usr/elk/kibana-5.5.0-linux-x86_64/config
-    vim kibana.yml
+    vi kibana.yml
     server.port: "5601"
     server.host: "127.0.0.1"
     elasticsearch.url: "http://127.0.0.1:9200"
@@ -88,7 +88,18 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
     pip3 install grpcio
     pip3 install protobuf
     ```
-
+13. update limits.conf and sysctl.conf
+    ```
+   vi /etc/security/limits.conf
+   * soft nofile 65536 
+   * hard nofile 131072 
+   * soft nGproc 65536 
+   * hard nproc 65536
+   *  - as unlimited
+   vi /etc/sysctl.conf
+   vm.max_map_count = 655360
+   sysctl -p
+    ```
 ## Getting Used
   
 ELK is the acronym for three open-source projects: Elasticsearch, Logstash, and Kibana. 
