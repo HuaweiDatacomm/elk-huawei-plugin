@@ -28,14 +28,14 @@ Platform-0.4.2.gem: https://rubygems.org/downloads/Platform-0.4.2.gem
 protoc-2.6.1.gem: https://rubygems.org/downloads/protoc-2.6.1.gem  
 ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-buffers-1.6.1.gem  
 
-4. extract elk:
+3. extract elk:
    ```
    cd /usr/elk
    tar -zxvf elasticsearch-5.5.0.tar.gz
    tar -zxvf logstash-5.5.0.tar.gz
    tar -zxvf kibana-5.5.0-linux-x86_64.tar.gz
    ```
-5. install gems:
+4. install gems:
    ```
    cd /usr/elk
    vim /etc/profile
@@ -47,17 +47,17 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
    gem install ruby-protocol-buffers-1.6.1.gem
    ruby-protoc -v
    ```
-6. clone elk-huawei-plugin:
+5. clone elk-huawei-plugin:
    ```
    git clone https://github.com/HuaweiDatacomm/elk-huawei-plugin.git
    ```
-7. install elk-huawei-plugin(warning: run install.sh only once):
+6. install elk-huawei-plugin(warning: run install.sh only once):
    ```
    cd /elk-huawei-plugin
    chmod +x install.sh
    ./install.sh
    ```
-8. put protos in dir elk-huawei-plugin and transfer protos,then generate the file of proto, put these in dir /usr/elk/logstash-5.5.0/huawei-test/protos  
+7. put protos in dir elk-huawei-plugin and transfer protos,then generate the file of proto, put these in dir /usr/elk/logstash-5.5.0/huawei-test/protos  
    proto files: https://github.com/HuaweiDatacomm/proto
    ```
    cd /elk-huawei-plugin
@@ -65,28 +65,28 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
    ruby-protoc *.proto
    cp -f *.proto *.pb.rb /usr/elk/logstash-5.5.0/huawei-test/protos/
    ```
-10. add elasticsearch's configuration(warning:pay attention to the spaces):
-   ```
-   cd /usr/elk/elasticsearch-5.5.0/config
-   vi elasticsearch.yml
-   network.host: 127.0.0.1
-   http.port: 9200
-   bootstrap.system_call_filter: false
-   ```
-11. add kibana's configuration(warning: pay attention to the spaces):
+8. add elasticsearch's configuration(warning:pay attention to the spaces):
+    ```
+    cd /usr/elk/elasticsearch-5.5.0/config
+    vi elasticsearch.yml
+    network.host: 127.0.0.1
+    http.port: 9200
+    bootstrap.system_call_filter: false
+    ```
+9. add kibana's configuration(warning: pay attention to the spaces):
     ```
     cd /usr/elk/kibana-5.5.0-linux-x86_64/config
     vi kibana.yml
     server.port: "5601"
     server.host: "127.0.0.1"
     elasticsearch.url: "http://127.0.0.1:9200"
-    ```
-12. download grpcio and protobuf
+    ```  
+10. download grpcio and protobuf
     ```
     pip3 install grpcio
     pip3 install protobuf
     ```
-13. update limits.conf and sysctl.conf
+11. update limits.conf and sysctl.conf
     ```
     vi /etc/security/limits.conf
     * soft nofile 65536 
