@@ -61,7 +61,7 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
    proto files: https://github.com/HuaweiDatacomm/proto
    ```
    cd /elk-huawei-plugin
-   java -Dfile.encoding=utf-8 -jar proto3to2.jar *.proto
+   java -Dfile.encoding=utf-8 -jar proto3to2_new.jar *.proto
    ruby-protoc *.proto
    cp -f *.proto *.pb.rb /usr/elk/logstash-5.5.0/huawei-test/protos/
    ```
