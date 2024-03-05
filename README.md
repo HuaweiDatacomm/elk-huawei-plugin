@@ -28,8 +28,6 @@ Platform-0.4.2.gem: https://rubygems.org/downloads/Platform-0.4.2.gem
 protoc-2.6.1.gem: https://rubygems.org/downloads/protoc-2.6.1.gem  
 ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-buffers-1.6.1.gem  
 
-
-
 4. extract elk:
    ```
    cd /usr/elk
@@ -90,15 +88,15 @@ ruby-protocol-buffers-1.6.1.gem: https://rubygems.org/downloads/ruby-protocol-bu
     ```
 13. update limits.conf and sysctl.conf
     ```
-   vi /etc/security/limits.conf
-   * soft nofile 65536 
-   * hard nofile 131072 
-   * soft nGproc 65536 
-   * hard nproc 65536
-   *  - as unlimited
-   vi /etc/sysctl.conf
-   vm.max_map_count = 655360
-   sysctl -p
+    vi /etc/security/limits.conf
+    * soft nofile 65536 
+    * hard nofile 131072 
+    * soft nGproc 65536 
+    * hard nproc 65536
+    *  - as unlimited
+    vi /etc/sysctl.conf
+    vm.max_map_count = 655360
+    sysctl -p
     ```
 ## Getting Used
   
